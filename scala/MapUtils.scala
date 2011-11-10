@@ -1,5 +1,6 @@
 
 import scala.collection.mutable.{ LinkedHashMap => LinkedMutableMap }
+import scala.collection.immutable.{ ListMap }
 
 
 object MapUtils {
@@ -10,7 +11,8 @@ object MapUtils {
             if ( !_map.contains(key) ) 
                 _map += ( key->map(key) ) 
         }
-        _map.toMap
+        ListMap() ++ _map
+
     }
 
     implicit def wrapAsMapUtils[K,V]( map:Map[K,V]) = new MapUtilsWrapper(map)

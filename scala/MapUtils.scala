@@ -6,7 +6,10 @@ object MapUtils {
 
      def order[K,V](list:List[K], map:Map[K,V]):Map[K,V] = {
         val _map = LinkedMutableMap[K,V]()
-        list.toSet.foreach{ key:K => _map += ( key->map(key) ) }
+        list.foreach{ key:K => 
+            if ( !_map.contains(key) ) 
+                _map += ( key->map(key) ) 
+        }
         _map.toMap
     }
 
